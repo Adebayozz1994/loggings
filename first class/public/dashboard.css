@@ -1,0 +1,35 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    
+}
+body{
+    background-image: url(img/pexels-alex-andrews-1983036.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    margin: 0px;
+}
+
+
+.email{
+    padding-right: 10px;
+    padding-top: 18px;
+}
+.image{
+    padding-right: 10px;
+    padding-top: 5px;
+}
+.name{
+    padding-top: 20px;
+    width: 500px;
+}
+.welcome{
+    padding-top: 9px;
+}
+.center{
+    width: 500px;
+}
+

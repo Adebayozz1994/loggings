@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    <div id="show"></div>
+    <button class="btn btn-primary mt-2 ms-2" onclick="signO()">LOG OUT</button>
+    <center>
+        <div class="center">
+
+            <div class="form-floating mb-3">
+                <input type="file" class="form-control" id="floatingInput" placeholder="text">
+                <label for="floatingInput">Title Of The Movies</label>
+            </div>
+            <div class="form-floating">
+                <input type="number" class="form-control" id="floatingPassword" placeholder="number">
+                <label for="floatingPassword">Year Of Production</label>
+            </div>
+            <div class="d-grid gap-2 m-5">
+                <button class="btn btn-primary" type="button">SUBMIT</button>
+            </div>
+        </div>
+    </center>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBuUQwnjYe5oQELrECvbnajn5LLaSjF5DY",
+            authDomain: "first-firebase-project-5c447.firebaseapp.com",
+            projectId: "first-firebase-project-5c447",
+            storageBucket: "first-firebase-project-5c447.appspot.com",
+            messagingSenderId: "513587432639",
+            appId: "1:513587432639:web:a1ca9a45941e16fea60a0a"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log(user);
+                let nomenclature = user.displayName
+                let maily = user.email
+                let imago = user.photoURL
+                show.innerHTML = `
+                    <nav nav class="navbar bg-danger" >
+                        <div class="container-fluid">
+                            <a class="navbar-brand">
+                                <div class="welcome">
+                                    <h6>welcome</h6>
+                                </div>
+                                </a>
+                            <form class="d-flex" role="search">
+                                <div class="name">
+                                    <h6>${nomenclature}</h6>
+                                </div>
+                                <div class="email">
+                                    <p>${maily}</p>
+                                </div>
+                                <div class="image">
+                                    <img class="rounded-circle" src="${imago}" alt="" width="50">
+                                </div>
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
+                                    <button class="btn btn-outline-primary text-dark" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </nav >`
+            } else {
+                window.location.href = "index.html"
+            }
+        })
+
+        const signO = () => {
+            const auth = getAuth();
+            signOut(auth).then(() => {
+                console.log("Sign-out successful.");
+            }).catch((error) => {
+                console.log("An error happened.");
+            });
+        }
+        window.signO = signO
+    </script>
+</body>
+
+</html>
